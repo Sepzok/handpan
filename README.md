@@ -14,12 +14,15 @@ npm run dev
 开发服务器启动后打开输出的本地地址。首次进入需点击“开启声音”，这是浏览器允许 Web Audio 发声所必需的用户手势。
 
 ```bash
-npm run lint
 npm run test
 npm run build
 ```
 
-构建产物位于 `dist/`。项目保持 Sites/Vinext 的部署结构，可直接用现有托管流程发布。
+构建产物位于 `dist/`，可直接挂到静态托管（GitHub Pages 基路径 `/handpan/`）。
+
+## Demo
+
+https://sepzok.github.io/handpan/
 
 ## 已实现能力
 
@@ -76,9 +79,3 @@ Pointer / Keyboard
 ## 验证
 
 自动测试覆盖音区命中、多触点状态、力度曲线、Round Robin、录音时间轴和音阶配置。浏览器验证范围与当前限制记录在 [docs/VALIDATION.md](docs/VALIDATION.md)。
-
-## Pages
-
-https://sepzok.github.io/handpan/
-
-Project intro on GitHub Pages. Full playable build: `npm ci && npm run dev`.

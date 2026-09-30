@@ -21,8 +21,12 @@ export class SampleManager {
     this.variants = variants;
   }
 
-  async loadManifest(url = "/audio/sample-manifest.json"): Promise<void> {
-    const response = await fetch(url, { cache: "force-cache" });
+  async loadManifest(url?: string): Promise<void> {
+    const base = import.meta.env.BASE_URL || "/";
+    const resolved =
+      url ??
+      `${base.endsWith("/") ? base : `${base}/`}audio/sample-manifest.json`;
+    const response = await fetch(resolved, { cache: "force-cache" });
     if (!response.ok) return;
     const payload = (await response.json()) as {
       variants?: SampleVariant[];
@@ -31,11 +35,15 @@ export class SampleManager {
   }
 
   async preloadScale(context: AudioContext, scaleId: string): Promise<void> {
+    const base = import.meta.env.BASE_URL || "/";
     const pending = this.variants
       .filter((variant) => variant.scaleId === scaleId)
       .filter((variant) => !this.buffers.has(this.keyFor(variant)))
       .map(async (variant) => {
-        const response = await fetch(variant.url);
+        const sampleUrl = variant.url.startsWith("http")
+          ? variant.url
+          : `${base.endsWith("/") ? base.slice(0, -1) : base}${variant.url.startsWith("/") ? variant.url : `/${variant.url}`}`;
+        const response = await fetch(sampleUrl);
         if (!response.ok) throw new Error(`Sample unavailable: ${variant.url}`);
         const decoded = await context.decodeAudioData(
           await response.arrayBuffer(),
