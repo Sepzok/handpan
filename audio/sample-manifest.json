@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "engine": "resona-multilayer",
+  "strategy": "physical-model-fallback",
+  "license": {
+    "status": "no-third-party-recordings",
+    "notice": "The default instrument synthesizes audio at runtime. Add only samples you own or are licensed to redistribute."
+  },
+  "naming": "{scaleId}/{noteId}/{technique}_{layer}_rr{roundRobin}.wav",
+  "variants": []
+}
