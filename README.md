@@ -76,3 +76,9 @@ Pointer / Keyboard
 ## 验证
 
 自动测试覆盖音区命中、多触点状态、力度曲线、Round Robin、录音时间轴和音阶配置。浏览器验证范围与当前限制记录在 [docs/VALIDATION.md](docs/VALIDATION.md)。
+
+## Pages
+
+https://sepzok.github.io/handpan/
+
+Project intro on GitHub Pages. Full playable build: `npm ci && npm run dev`.
